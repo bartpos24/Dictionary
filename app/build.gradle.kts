@@ -5,13 +5,16 @@ plugins {
 
 android {
     namespace = "com.example.dictionary"
-    compileSdk = 32
+    compileSdkVersion(AndroidSdk.compileSdkVersion)
 
-//    signingConfigs {
-//        create("release") {
-//
-//        }
-//    }
+    signingConfigs {
+        create("release") {
+            storeFile = file("$rootDir/keystore/dictionaty-release.jks")
+            storePassword = "dictionary2023"
+            keyAlias = "dictionary"
+            keyPassword = "dictionary2023"
+        }
+    }
 
     defaultConfig {
         applicationId = "com.example.dictionary"
@@ -26,8 +29,8 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            //signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
