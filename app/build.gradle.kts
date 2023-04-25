@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id(BuildPlugins.androidApplication)
+    id(BuildPlugins.jetbrainsAndroid)
 }
 
 android {
@@ -15,10 +15,10 @@ android {
 
     defaultConfig {
         applicationId = "com.example.dictionary"
-        minSdk = 27
-        targetSdk = 31
+        minSdkVersion(AndroidSdk.minSdkVersion)
+        targetSdkVersion(AndroidSdk.targetSdkVersion)
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,15 +44,15 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.6.0-rc01")
-    implementation("androidx.appcompat:appcompat:1.4.0-alpha01")
-    implementation("com.google.android.material:material:1.4.0-rc01")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
-    testImplementation("junit:junit:4.13")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2-alpha03")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0-rc01")
+    implementation(Libraries.core)
+    implementation(Libraries.appCompat)
+    implementation(Libraries.materialDesign)
+    implementation(Libraries.constraintLayout)
+    implementation(Libraries.lifecycleLivedata)
+    implementation(Libraries.lifecycleViewModel)
+    implementation(Libraries.navigationFragment)
+    implementation(Libraries.navigationUI)
+    testImplementation(Libraries.junit)
+    androidTestImplementation(Libraries.testJunit)
+    androidTestImplementation(Libraries.espresso)
 }
