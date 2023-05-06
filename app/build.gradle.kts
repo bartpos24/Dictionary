@@ -76,5 +76,5 @@ dependencies {
 
     implementation(Libraries.kotlinTest)
 
-    //implementation(project("path" to ":web"))
+    implementation(project("path" to ":web"))
 }
