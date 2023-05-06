@@ -1,10 +1,14 @@
 plugins {
     id(BuildPlugins.androidApplication)
-    id(BuildPlugins.jetbrainsAndroid)
+    //id(BuildPlugins.jetbrainsAndroid)
+    id(BuildPlugins.kotlinAndroid)
+    id(BuildPlugins.kotlinAndroidExtensions)
+    id(BuildPlugins.androidNavigationSafeArgs)
+    id(BuildPlugins.kotlinKapt)
 }
 
 android {
-    namespace = "com.example.dictionary"
+    //namespace = "com.example.dictionary"
     compileSdkVersion(AndroidSdk.compileSdkVersion)
 
     signingConfigs {
@@ -39,6 +43,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = listOf("-Xallow-result-return-type")
     }
     buildFeatures {
         viewBinding = true
@@ -46,6 +51,7 @@ android {
 }
 
 dependencies {
+    implementation(fileTree("include" to "*.jar", "dir" to "libs"))
 
     implementation(Libraries.core)
     implementation(Libraries.appCompat)

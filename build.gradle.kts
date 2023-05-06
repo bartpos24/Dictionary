@@ -1,8 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath(BuildPlugins.androidGradlePlugin)
+        classpath(BuildPlugins.kotlinGradlePlugin)
+        classpath(BuildPlugins.navigationPlugin)
+        classpath(BuildPlugins.jetifierPlugin)
+    }
+}
+
 plugins {
-    id("com.android.application") version "7.4.0-alpha07" apply false
-    id("com.android.library") version "7.4.0-alpha07" apply false
-    id("org.jetbrains.kotlin.android") version "1.6.20" apply false
+    //id("com.android.application") version "7.4.0-alpha07" apply false
+    //id("com.android.library") version "7.4.0-alpha07" apply false
+    //id("org.jetbrains.kotlin.android") version "1.6.20" apply false
 
     id(BuildPlugins.openApiGenerator)
     id(BuildPlugins.spotless)
@@ -30,4 +44,21 @@ openApiGenerate {
         )
     )
 }
+spotless {
+    kotlin {
+        target(listOf("**/*.kt"))
+        targetExclude(listOf("**/generated/**/*.kt"))
+        ktlint(BuildPlugins.Versions.ktlintVersion)
+    }
+    kotlinGradle {
+        target(listOf("**/*.gradle.kts"))
+        ktlint(BuildPlugins.Versions.ktlintVersion)
+    }
+}
+declareGenerateApiTask()
 
+//allProjects {
+//    repositories {
+//
+//    }
+//}

@@ -2,8 +2,9 @@ const val kotlinVersion = "1.6.20"
 
 object BuildPlugins {
     object Versions {
-
-
+        const val ktlintVersion = "0.44.0"
+        const val gradleVersion = "7.4.0-alpha07"
+        const val jetifierVersion = "1.0.0-beta10"
     }
 
     const val androidApplication = "com.android.application"
@@ -11,6 +12,11 @@ object BuildPlugins {
 
     const val openApiGenerator = "org.openapi.generator"
     const val spotless = "com.diffplug.gradle.spotless"
+
+    const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.gradleVersion}"
+    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    const val navigationPlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Libraries.Versions.navigationVersion}"
+    const val jetifierPlugin = "com.android.tools.build.jetifier:jetifier-processor:${Versions.jetifierVersion}"
 
     const val androidLibrary = "com.android.library"
     const val crashlyticsGradle = "com.google.firebase.crashlytics"
