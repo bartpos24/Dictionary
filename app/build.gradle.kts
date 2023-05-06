@@ -58,4 +58,17 @@ dependencies {
     testImplementation(Libraries.junit)
     androidTestImplementation(Libraries.testJunit)
     androidTestImplementation(Libraries.espresso)
+    //web
+    implementation(Libraries.okHttp)
+    implementation(Libraries.okHttpBrotliInterceptor)
+    implementation(Libraries.okHttpLoggingInterceptor)
+    implementation(Libraries.moshi)
+    implementation(Libraries.moshiAdapters)
+    implementation(Libraries.moshiCodeGen)
+    implementation(Libraries.threeTenBp)
+    implementation(Libraries.okio)
+
+    implementation(Libraries.kotlinTest)
+
+    //implementation(project("path" to ":web"))
 }
