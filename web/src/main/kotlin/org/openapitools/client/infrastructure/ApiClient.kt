@@ -1,14 +1,14 @@
 package org.openapitools.client.infrastructure
 
+import okhttp3.FormBody
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.FormBody
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.ResponseBody
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.Request
 import java.io.File
 
 open class ApiClient(val baseUrl: String) {
@@ -45,7 +45,7 @@ open class ApiClient(val baseUrl: String) {
                 FormBody.Builder().apply {
                     // content's type *must* be Map<String, Any>
                     @Suppress("UNCHECKED_CAST")
-                    (content as Map<String,String>).forEach { (key, value) ->
+                    (content as Map<String, String>).forEach { (key, value) ->
                         add(key, value)
                     }
                 }.build()
@@ -58,22 +58,21 @@ open class ApiClient(val baseUrl: String) {
             else -> throw UnsupportedOperationException("requestBody currently only supports JSON body and File body.")
         }
 
-    protected inline fun <reified T: Any?> responseBody(body: ResponseBody?, mediaType: String? = JsonMediaType): T? {
-        if(body == null) {
+    protected inline fun <reified T : Any?> responseBody(body: ResponseBody?, mediaType: String? = JsonMediaType): T? {
+        if (body == null) {
             return null
         }
         val bodyContent = body.string()
         if (bodyContent.isEmpty()) {
             return null
         }
-        return when(mediaType) {
+        return when (mediaType) {
             JsonMediaType -> Serializer.moshi.adapter(T::class.java).fromJson(bodyContent)
-            else ->  throw UnsupportedOperationException("responseBody currently only supports JSON body.")
+            else -> throw UnsupportedOperationException("responseBody currently only supports JSON body.")
         }
     }
 
-
-    protected inline fun <reified T: Any?> request(requestConfig: RequestConfig, body : Any? = null): ApiInfrastructureResponse<T?> {
+    protected inline fun <reified T : Any?> request(requestConfig: RequestConfig, body: Any? = null): ApiInfrastructureResponse<T?> {
         val httpUrl = baseUrl.toHttpUrlOrNull() ?: throw IllegalStateException("baseUrl is invalid.")
 
         val url = httpUrl.newBuilder()
@@ -95,11 +94,11 @@ open class ApiClient(val baseUrl: String) {
         }
         val headers = requestConfig.headers
 
-        if(headers[ContentType] ?: "" == "") {
+        if (headers[ContentType] ?: "" == "") {
             throw kotlin.IllegalStateException("Missing Content-Type header. This is required.")
         }
 
-        if(headers[Accept] ?: "" == "") {
+        if (headers[Accept] ?: "" == "") {
             throw kotlin.IllegalStateException("Missing Accept header. This is required.")
         }
 
@@ -124,29 +123,29 @@ open class ApiClient(val baseUrl: String) {
         // TODO: handle specific mapping types. e.g. Map<int, Class<?>>
         when {
             response.isRedirect -> return Redirection(
-                    response.code,
-                    response.headers.toMultimap()
+                response.code,
+                response.headers.toMultimap()
             )
             response.isInformational -> return Informational(
-                    response.message,
-                    response.code,
-                    response.headers.toMultimap()
+                response.message,
+                response.code,
+                response.headers.toMultimap()
             )
             response.isSuccessful -> return Success(
-                    responseBody(response.body, accept),
-                    response.code,
-                    response.headers.toMultimap()
+                responseBody(response.body, accept),
+                response.code,
+                response.headers.toMultimap()
             )
             response.isClientError -> return ClientError(
-                    response.body?.string(),
-                    response.code,
-                    response.headers.toMultimap()
+                response.body?.string(),
+                response.code,
+                response.headers.toMultimap()
             )
             else -> return ServerError(
-                    null,
-                    response.body?.string(),
-                    response.code,
-                    response.headers.toMultimap()
+                null,
+                response.body?.string(),
+                response.code,
+                response.headers.toMultimap()
             )
         }
     }

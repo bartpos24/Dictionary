@@ -72,13 +72,13 @@ object Libraries {
     const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
     const val timber = "com.jakewharton.timber:timber:${Versions.timberVersion}"
 
-    //lifecycle
+    // lifecycle
     const val lifecycle = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
     const val lifecycleProcessLifecycleOwner = "androidx.lifecycle:lifecycle-process:${Versions.lifecycleVersion}"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
     const val lifecycleVievModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifeCycleSavedStateVersion}"
 
-    //web
+    // web
     const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp3Version}"
     const val okHttpBrotliInterceptor = "com.squareup.okhttp3:okhttp-brotli:${Versions.okHttp3Version}"
     const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp3Version}"
@@ -88,11 +88,10 @@ object Libraries {
     const val threeTenBp = "com.jakewharton.threetenabp:threetenabp:${Versions.threeTenBpVersion}"
     const val okio = "com.squareup.okio:okio:${Versions.okioVersion}"
 
-    //test
+    // test
     const val espresso = "androidx.test.espresso:espresso-core:${Versions.espressoVersion}"
     const val junit = "junit:junit:${Versions.junitVersion}"
     const val kotlinTest = "io.kotlintest:kotlintest:${Versions.kotlinTestVersion}"
     const val junitExtensions = "androidx.test.ext:junit:${Versions.testExtJunitVersion}"
     const val runner = "androidx.test:runner:${Versions.testRunnerVersion}"
-
 }
