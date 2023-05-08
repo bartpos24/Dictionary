@@ -7,7 +7,7 @@ import org.gradle.kotlin.dsl.register
 
 open class GenerateApiTask : DefaultTask() {
     init {
-        group = "DistionaryApi"
+        group = "DictionaryApi"
         description = "Generates Web module using open api generator."
     }
 }

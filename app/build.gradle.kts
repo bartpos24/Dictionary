@@ -5,6 +5,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.androidNavigationSafeArgs)
     id(BuildPlugins.kotlinKapt)
+    id(BuildPlugins.googleServices)
 }
 
 android {
@@ -22,18 +23,18 @@ android {
 
     defaultConfig {
         applicationId = "com.example.dictionary"
+        applicationIdSuffix = "App"
         minSdkVersion(AndroidSdk.minSdkVersion)
         targetSdkVersion(AndroidSdk.targetSdkVersion)
         versionCode = 1
         versionName = "1.0.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -57,24 +58,30 @@ dependencies {
     implementation(Libraries.appCompat)
     implementation(Libraries.materialDesign)
     implementation(Libraries.constraintLayout)
-    implementation(Libraries.lifecycleLivedata)
-    implementation(Libraries.lifecycleViewModel)
     implementation(Libraries.navigationFragment)
     implementation(Libraries.navigationUI)
     testImplementation(Libraries.junit)
-    androidTestImplementation(Libraries.testJunit)
+    androidTestImplementation(Libraries.junitExtensions)
     androidTestImplementation(Libraries.espresso)
+    androidTestImplementation(Libraries.runner)
+
+    //lifecycle
+    implementation(Libraries.lifecycle)
+    implementation(Libraries.lifecycleProcessLifecycleOwner)
+    implementation(Libraries.lifecycleVievModelSavedState)
+    implementation(Libraries.lifecycleLivedata)
+    implementation(Libraries.lifecycleViewModel)
     //web
     implementation(Libraries.okHttp)
     implementation(Libraries.okHttpBrotliInterceptor)
     implementation(Libraries.okHttpLoggingInterceptor)
     implementation(Libraries.moshi)
     implementation(Libraries.moshiAdapters)
-    implementation(Libraries.moshiCodeGen)
     implementation(Libraries.threeTenBp)
-    implementation(Libraries.okio)
+    kapt(Libraries.moshiCodeGen)
+    kapt(BuildPlugins.jetifier)
+    annotationProcessor(BuildPlugins.jetifier)
 
-    implementation(Libraries.kotlinTest)
 
     implementation(project("path" to ":web"))
 }

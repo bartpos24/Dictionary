@@ -10,6 +10,7 @@ buildscript {
         classpath(BuildPlugins.kotlinGradlePlugin)
         classpath(BuildPlugins.navigationPlugin)
         classpath(BuildPlugins.jetifierPlugin)
+        classpath(BuildPlugins.googleServicesPlugin)
     }
 }
 
@@ -57,8 +58,11 @@ spotless {
 }
 declareGenerateApiTask()
 
-//allProjects {
-//    repositories {
-//
-//    }
-//}
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven("https://jitpack.io")
+    }
+}
