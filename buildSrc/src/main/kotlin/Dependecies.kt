@@ -43,7 +43,7 @@ object Libraries {
         const val appcompatVersion = "1.4.0-alpha01"
         const val materialVersion = "1.4.0-rc01"
         const val constraintLayoutVersion = "2.1.0-beta02"
-        const val lifecycleVersion = "2.6.1"
+        const val lifecycleVersion = "2.5.1"
         const val navigationVersion = "2.3.5"
         const val junitVersion = "4.13"
         const val espressoVersion = "3.3.0-rc01"

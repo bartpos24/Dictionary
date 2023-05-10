@@ -5,7 +5,7 @@ plugins {
     id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.androidNavigationSafeArgs)
     id(BuildPlugins.kotlinKapt)
-    id(BuildPlugins.googleServices)
+    //id(BuildPlugins.googleServices)
 }
 
 android {

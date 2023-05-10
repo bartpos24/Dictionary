@@ -10,15 +10,11 @@ buildscript {
         classpath(BuildPlugins.kotlinGradlePlugin)
         classpath(BuildPlugins.navigationPlugin)
         classpath(BuildPlugins.jetifierPlugin)
-        classpath(BuildPlugins.googleServicesPlugin)
+//        classpath(BuildPlugins.googleServicesPlugin)
     }
 }
 
 plugins {
-    //id("com.android.application") version "7.4.0-alpha07" apply false
-    //id("com.android.library") version "7.4.0-alpha07" apply false
-    //id("org.jetbrains.kotlin.android") version "1.6.20" apply false
-
     id(BuildPlugins.openApiGenerator)
     id(BuildPlugins.spotless)
 }
